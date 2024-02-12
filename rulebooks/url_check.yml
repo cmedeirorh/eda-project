@@ -10,10 +10,16 @@
 
   rules:
     - name: Debug
-      condition: event.payload is defined
+      condition: event.url_check.status == "up"
       action:
         debug:
-          msg: "Site is up"
+          msg: "Site is UP"
+          
+    - name: Debug
+      condition: event.url_check.status == "down"
+      action:
+        debug:
+          msg: "Site is DOWN"
           
 #    - name: Web site is down
 #      condition: event.url_check.status == "down"
