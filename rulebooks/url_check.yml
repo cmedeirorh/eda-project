@@ -9,12 +9,6 @@
         delay: 30
 
   rules:
-    - name: Web site is UP
-      condition: event.url_check.status == "up"
-      action:
-        debug:
-          msg: "Site is UP"
-      
     - name: Web site is DOWN
       condition: event.url_check.status == "down"
       action:
