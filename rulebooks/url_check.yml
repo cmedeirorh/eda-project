@@ -21,4 +21,6 @@
         run_job_template:
           name: "URL Checker - DOWN"
           organization: Default
-        
+          job_args:
+              extra_vars:
+                _hosts_: "{{ host }}"
