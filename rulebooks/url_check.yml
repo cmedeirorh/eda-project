@@ -12,8 +12,9 @@
     - name: Web site is UP
       condition: event.url_check.status == "up"
       action:
-        debug:
-          msg: "Site is UP"
+        run_job_template:
+          name: "URL Checker - UP"
+          organization: Default
           
     - name: Web site is DOWN
       condition: event.url_check.status == "down"
