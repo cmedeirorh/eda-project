@@ -23,4 +23,4 @@
           organization: Default
           job_args:
               extra_vars:
-                _hosts_: "{{ host }}"
+                hosts: "{{ host }}"
