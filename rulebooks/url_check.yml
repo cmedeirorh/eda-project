@@ -5,7 +5,7 @@
   sources:
      - ansible.eda.url_check:
         urls:
-          - http://webserver.int.cmedeiros.net
+          - http://{{ webserver_hostname }}
         delay: 30
 
   rules:
@@ -23,4 +23,4 @@
           organization: Default
           job_args:
             extra_vars:
-              _hosts: "webserver.int.cmedeiros.net"
+              _hosts: "{{ webserver_hostname }}"
