@@ -1,6 +1,6 @@
 ---
 - name: Check the status of a webpage
-  hosts: all
+  hosts: localhost
   ## Define our source for events
   sources:
      - ansible.eda.url_check:
