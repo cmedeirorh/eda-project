@@ -16,6 +16,17 @@
           job_args:
             extra_vars:
               _hosts: "{{ event.payload.host_host }}"
+
+  rules:
+    - name: EC2 VM is Unresponsive
+      condition: event.payload.trigger_name == "ICMP: Unavailable by ICMP ping"
+      action:
+        run_job_template:
+          name: "Cloud / AWS / Restart VM"
+          organization: Default
+          job_args:
+            extra_vars:
+              _hosts: "{{ event.payload.host_host }}"
               
     - name: Debug
       condition: event.payload is defined
