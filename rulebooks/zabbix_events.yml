@@ -9,14 +9,18 @@
   rules:
     - name: EC2 VM is Unresponsive
       condition: event.payload.trigger_name == 'ICMP Unavailable by ping'
+      hostname: "{{ event.payload.host_host }}"
+      region: "{{ hostname.split('=', 1) }}"
       action:
-        run_job_template:
-          name: 'Cloud / AWS / Restart VM'
-          organization: Default
-          job_args:
-            extra_vars:
-              vm_name: "{{ event.payload.host_host }}"
-              vm_aws_region: "us-east-2"
+        debug:
+          msg: "{{ region }}"
+#        run_job_template:
+#          name: 'Cloud / AWS / Restart VM'
+#          organization: Default
+#          job_args:
+#            extra_vars:
+#              vm_name: "{{ event.payload.host_host }}"
+#              vm_aws_region: "us-east-2"
               
     - name: Web site is DOWN
       condition: event.payload.trigger_name == 'url_checker'
