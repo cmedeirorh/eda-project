@@ -27,8 +27,8 @@
             extra_vars:
               vm_name: "{{ event.payload.host_host }}"
               
-    - name: Debug
-      condition: event.payload is defined
-      action:
-        debug:
-          msg: "{{ event.payload }}"
+      - name: Debug
+        condition: event.payload is defined
+        action:
+          debug:
+            msg: "{{ event.payload }}"
