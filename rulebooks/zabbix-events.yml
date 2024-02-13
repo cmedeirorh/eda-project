@@ -11,7 +11,7 @@
       condition: event.payload is defined
       action:
         debug:
-          msg: "You said, '{{ event.payload.message }}'. Is it me you're looking for?"
+          msg: "{{ event.payload }}"
 
     - name: Web site is DOWN
       condition: event.payload is defined
@@ -21,4 +21,4 @@
           organization: Default
           job_args:
             extra_vars:
-              _hosts: '{{ event.payload.host_host }}'
+              _hosts: "{{ event.payload.host_host }}"
