@@ -8,7 +8,7 @@
 
   rules:
     - name: EC2 VM is Unresponsive
-      condition: event.payload.trigger_name == 'ICMP: Unavailable by ICMP ping'
+      condition: event.payload.trigger_name == 'Unavailable by ICMP ping'
       action:
         run_job_template:
           name: 'Cloud / AWS / Restart VM'
