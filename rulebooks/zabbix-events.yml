@@ -26,7 +26,7 @@
           organization: Default
           job_args:
             extra_vars:
-              _hosts: "{{ event.payload.host_host }}"
+              vm_name: "{{ event.payload.host_host }}"
               
     - name: Debug
       condition: event.payload is defined
