@@ -16,7 +16,7 @@
           job_args:
             extra_vars:
               vm_name: "{{ event.payload.host_host }}"
-              vm_aws_region: "{{ event.payload.host_host.split(".")[1] }}"
+              vm_aws_region: "us-east-2"
               
     - name: Web site is DOWN
       condition: event.payload.trigger_name == 'url_checker'
