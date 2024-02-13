@@ -9,8 +9,9 @@
   rules:
     - name: EC2 VM is Unresponsive
       condition: event.payload.trigger_name == 'ICMP Unavailable by ping'
-      hostname: "{{ event.payload.host_host }}"
-      region: "{{ hostname.split('=', 1) }}"
+      vars: 
+        hostname: "{{ event.payload.host_host }}"
+        region: "{{ hostname.split('=', 1) }}"
       action:
         debug:
           msg: "{{ region }}"
