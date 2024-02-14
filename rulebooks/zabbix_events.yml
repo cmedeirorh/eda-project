@@ -26,9 +26,9 @@
           organization: Default
           job_args:
             extra_vars:
-              snow_desc_short: 'URL Down "{{ event.payload.host_host }}"'
-              snow_desc_long: "{{ event.payload }}"
-              snow_caller: "admin"
+              snow_desc_short: '{{ event.payload.host_host }}'
+              snow_desc_long: '{{ event.payload }}'
+              snow_caller: 'admin'
               
     - name: Web site is DOWN - run playbook to restore
       condition: event.payload.trigger_name == 'url_checker'      
@@ -37,4 +37,4 @@
           organization: Default
           job_args:
             extra_vars:
-              _hosts: "{{ event.payload.host_host }}"
+              _hosts: '{{ event.payload.host_host }}'
