@@ -29,3 +29,5 @@
           job_args:
             extra_vars:
               _hosts: "{{ event.payload.host_host }}"
+        debug:
+          msg: "{{ event.payload }}"
