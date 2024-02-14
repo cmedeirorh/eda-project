@@ -17,10 +17,8 @@
             extra_vars:
               vm_name: "{{ event.payload.host_host }}"
               vm_aws_region: "us-east-2"
-        debug:
-          msg: "{{ event.payload }}"
           
-    - name: Web site is DOWN
+    - name: Web site is DOWN - create ticket
       condition: event.payload.trigger_name == 'url_checker'
       action:
         run_job_template:
@@ -31,13 +29,12 @@
               snow_desc_short: 'URL Down "{{ event.payload.host_host }}"'
               snow_desc_long: "{{ event.payload }}"
               snow_caller: "admin"
-      
+              
+    - name: Web site is DOWN - run playbook to restore
+      condition: event.payload.trigger_name == 'url_checker'      
         run_job_template:
           name: 'URL Checker - DOWN'
           organization: Default
           job_args:
             extra_vars:
               _hosts: "{{ event.payload.host_host }}"
-
-        debug:
-          msg: "Test: '{{ event.payload }}'"
