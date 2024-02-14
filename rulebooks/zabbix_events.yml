@@ -18,24 +18,15 @@
               vm_name: "{{ event.payload.host_host }}"
               vm_aws_region: "us-east-2"
 
-    - name: Web site is DOWN create ticket
+    - name: Web site is DOWN
       condition: event.payload.trigger_name == 'url_checker'
       action:
-        run_job_template:
-          name: 'ServiceNow'
+        run_workflow_template:
+          name: 'EDA Fix Application Down'
           organization: Default
           job_args:
             extra_vars:
               snow_desc_short: '{{ event.payload.host_host }}'
               snow_desc_long: '{{ event.payload }}'
               snow_caller: 'admin'
-
-#    - name: Web site is DOWN run playbook to restore
-#      condition: event.payload.trigger_name == 'url_checker'
-#      action:
-        run_job_template:
-          name: 'URL Checker - DOWN'
-          organization: Default
-          job_args:
-            extra_vars:
               _hosts: '{{ event.payload.host_host }}'
