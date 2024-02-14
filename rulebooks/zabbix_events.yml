@@ -7,13 +7,14 @@
         port: 5001
 
   rules:
-    - name: EC2 VM is Unresponsive
-      condition: event.payload.trigger_name == 'ICMP Unavailable by ping'
+    - name: Web site is DOWN create ticket
+      condition: event.payload.trigger_name == 'url_checker'
       action:
         run_job_template:
-          name: 'Cloud / AWS / Restart VM'
+          name: 'ServiceNow'
           organization: Default
           job_args:
             extra_vars:
-              vm_name: "{{ event.payload.host_host }}"
-              vm_aws_region: "us-east-2"
+              snow_desc_short: '{{ event.payload.host_host }}'
+              snow_desc_long: '{{ event.payload }}'
+              snow_caller: 'admin'
