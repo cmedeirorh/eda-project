@@ -17,7 +17,9 @@
             extra_vars:
               vm_name: "{{ event.payload.host_host }}"
               vm_aws_region: "us-east-2"
-              
+        debug:
+          msg: "{{ event.payload }}"
+          
     - name: Web site is DOWN
       condition: event.payload.trigger_name == 'url_checker'
       action:
