@@ -30,9 +30,9 @@
               snow_desc_long: '{{ event.payload }}'
               snow_caller: 'admin'
 
-    - name: Web site is DOWN run playbook to restore
-      condition: event.payload.trigger_name == 'url_checker'
-      action:
+#    - name: Web site is DOWN run playbook to restore
+#      condition: event.payload.trigger_name == 'url_checker'
+#      action:
         run_job_template:
           name: 'URL Checker - DOWN'
           organization: Default
