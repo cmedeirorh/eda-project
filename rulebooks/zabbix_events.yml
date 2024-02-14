@@ -7,6 +7,17 @@
         port: 5001
 
   rules:
+    - name: EC2 VM is Unresponsive
+      condition: event.payload.trigger_name == 'ICMP Unavailable by ping'
+      action:
+        run_job_template:
+          name: 'Cloud / AWS / Restart VM'
+          organization: Default
+          job_args:
+            extra_vars:
+              vm_name: "{{ event.payload.host_host }}"
+              vm_aws_region: "us-east-2"
+
     - name: Web site is DOWN create ticket
       condition: event.payload.trigger_name == 'url_checker'
       action:
@@ -18,3 +29,13 @@
               snow_desc_short: '{{ event.payload.host_host }}'
               snow_desc_long: '{{ event.payload }}'
               snow_caller: 'admin'
+
+    - name: Web site is DOWN run playbook to restore
+      condition: event.payload.trigger_name == 'url_checker'
+      action:
+        run_job_template:
+          name: 'URL Checker - DOWN'
+          organization: Default
+          job_args:
+            extra_vars:
+              _hosts: '{{ event.payload.host_host }}'
