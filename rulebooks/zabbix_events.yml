@@ -8,10 +8,10 @@
 
   rules:
     - name: EC2 VM is Unresponsive
-      condition: event.payload.trigger_name == 'ICMP Unavailable by ping'
+      condition: event.payload.trigger_name == "ICMP Unavailable by ping"
       action:
         run_job_template:
-          name: 'Cloud / AWS / Restart VM'
+          name: "Cloud / AWS / Restart VM"
           organization: Default
           job_args:
             extra_vars:
@@ -19,21 +19,11 @@
               vm_aws_region: "us-east-2"
 
     - name: Web site is DOWN
-      condition: event.payload.trigger_name == 'url_checker'
+      condition: event.payload.trigger_name == "url_checker"
       action:
         run_job_template:
-          name: 'EDA / URL Checker / DOWN'
+          name: "EDA / URL Checker / DOWN"
           organization: Default
           job_args:
             extra_vars:
-              _hosts: '{{ event.payload.host_host }}'
-
-#        run_workflow_template:
-#          name: 'EDA Fix Application Down'
-#          organization: Default
-#          job_args:
-#            extra_vars:
-#              snow_desc_short: '{{ event.payload.host_host }}'
-#              snow_desc_long: '{{ event.payload }}'
-#              snow_caller: 'admin'
-#              _hosts: '{{ event.payload.host_host }}'
+              _hosts: "{{ event.payload.host_host }}"
