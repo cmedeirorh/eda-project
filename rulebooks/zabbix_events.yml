@@ -26,4 +26,5 @@
           organization: Default
           job_args:
             extra_vars:
-              ansible_limit: "{{ event.payload.host_host }}"
+              test: "{{ event.payload.host_host }}"
+              test2: "foo"
