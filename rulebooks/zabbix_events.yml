@@ -21,12 +21,19 @@
     - name: Web site is DOWN
       condition: event.payload.trigger_name == 'url_checker'
       action:
-        run_workflow_template:
-          name: 'EDA Fix Application Down'
+        run_job_template:
+          name: 'EDA / URL Checker / DOWN'
           organization: Default
           job_args:
             extra_vars:
-              snow_desc_short: '{{ event.payload.host_host }}'
-              snow_desc_long: '{{ event.payload }}'
-              snow_caller: 'admin'
               _hosts: '{{ event.payload.host_host }}'
+
+#        run_workflow_template:
+#          name: 'EDA Fix Application Down'
+#          organization: Default
+#          job_args:
+#            extra_vars:
+#              snow_desc_short: '{{ event.payload.host_host }}'
+#              snow_desc_long: '{{ event.payload }}'
+#              snow_caller: 'admin'
+#              _hosts: '{{ event.payload.host_host }}'
