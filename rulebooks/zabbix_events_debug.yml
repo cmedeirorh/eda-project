@@ -13,6 +13,6 @@
         run_job_template:
           name: test eda
           organization: Default
-          job_args:
-            extra_vars:
-              foo: "{{ event }}"
+#          job_args:
+#            extra_vars:
+#              foo: "{{ event }}"
