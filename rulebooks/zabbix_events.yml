@@ -19,7 +19,7 @@
               vm_aws_region: "us-east-2"
               
     - name: Web site is DOWN
-      condition: event.payload.trigger_name == "url_checker"
+      condition: event.payload.trigger_name == "url_checker-"
       action:
         run_job_template:
           name: "test eda"
@@ -28,3 +28,11 @@
             extra_vars:
               foo: "FOO"
               #_hosts: "{{ event.payload.host_host }}"
+              
+    - name: Web site is DOWN debug
+      condition: event.payload.trigger_name == "url_checker"
+      action:
+        debug:
+          var: event
+              #_hosts: "{{ event.payload.host_host }}"
+              
