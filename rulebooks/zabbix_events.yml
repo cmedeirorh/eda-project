@@ -26,5 +26,5 @@
           organization: Default
           job_args:
             extra_vars:
-              foo: "{{ event.payload.host_host }}"
+              foo: "FOO"
               #_hosts: "{{ event.payload.host_host }}"
