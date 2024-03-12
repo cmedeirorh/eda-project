@@ -17,4 +17,4 @@
             extra_vars:
               _hosts: "{{ event.payload.host_host }}"
               snow_desc_short: "{{ event.payload.host_host }}"
-              snow_desc_long: "{{ event.payload }}"
+              snow_desc_long: "{{ event.payload.host_host }}"
