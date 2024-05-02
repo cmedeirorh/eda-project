@@ -4,7 +4,7 @@
   sources:
     - ansible.eda.webhook:
         host: "{{ eda_host }}"
-        port: 5001
+        port: 35001
 
   rules:
     - name: EC2 VM is Unresponsive
