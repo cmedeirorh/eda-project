@@ -3,7 +3,7 @@
   hosts: all
   sources:
     - ansible.eda.webhook:
-        host: 0.0.0.0
+        host: "{{ eda_host }}"
         port: 5001
 
   rules:
