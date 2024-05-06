@@ -1,0 +1,8 @@
+---
+collections:
+  - community.general
+  - ansible.eda
+  - name: community.vmware
+  - name: vmware.vmware_rest
+  - name: awx.awx
+  - name: containers.podman
