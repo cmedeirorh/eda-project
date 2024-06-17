@@ -2,7 +2,8 @@
 collections:
   - community.general
   - ansible.eda
-  - name: community.vmware
-  - name: vmware.vmware_rest
-  - name: awx.awx
-  - name: containers.podman
+  - community.vmware
+  - vmware.vmware_rest
+  - awx.awx
+  - containers.podman
+  - dynatrace.event_driven_ansible
