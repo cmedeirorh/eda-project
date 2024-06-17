@@ -8,47 +8,12 @@
         delay: 10
 
   rules:
-
-    # - name: Problem payload Dynatrace for CPU issue
-    #   condition: event.title is match("CPU saturation")
-    #   action:
-    #     run_job_template:
-    #       name: "Remediate CPU saturation issue"
-    #       organization: "Default"
-
-    - name: SwingSight dispatch RangeRoamer
-      condition: |
-        event.title == "Too many golf balls" 
+    - name: Problem payload Dynatrace for CPU issue
+      condition: event.title is match("CPU saturation")
       action:
         run_job_template:
-          name: "SwingSight | Dispatch RangeRoamer"
-          organization: Default
-
-    - name: SwingSight request LATENCY
-      condition: |
-        event.title == "Http monitor performance threshold violation" 
-      action:
-        run_job_template:
-          name: "SwingSight | Configure proxy"
-          organization: Default
-          job_args:
-            extra_vars:
-              disable_proxy: false
-              create_toxic: false
-              disable_toxic: true
-                
-    - name: SwingSight OUTAGE
-      condition: |
-        event.title == "Http monitor global outage" 
-      action:
-        run_job_template:
-          name: "SwingSight | Configure proxy"
-          organization: Default
-          job_args:
-            extra_vars:
-              disable_proxy: false
-              create_toxic: false
-              disable_toxic: true
+          name: "Remediate CPU saturation issue"
+          organization: "Default"
 
     - name: Catch all remaining
       condition: event.meta is defined
