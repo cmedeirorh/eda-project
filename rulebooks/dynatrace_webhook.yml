@@ -1,0 +1,20 @@
+---
+- name: Catch Dynatrace Problems using Webhook
+  hosts: all
+  sources:
+    - ansible.eda.webhook:
+        host: 0.0.0.0
+        port: 35002
+
+  rules:
+    - name: Problem payload Dynatrace for CPU issue
+      condition: event.title is match("CPU saturation")
+      action:
+        run_job_template:
+          name: "Remediate CPU saturation issue"
+          organization: "Default"
+
+    - name: Catch all remaining
+      condition: event.meta is defined
+      action:
+        debug:
