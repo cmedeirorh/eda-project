@@ -5,17 +5,20 @@
     - ansible.eda.webhook:
         host: 0.0.0.0
         port: 35002
-        token: "{{ api_token }}"
+        #token: "{{ api_token }}"
 
   rules:
-    - name: Problem payload Dynatrace for CPU issue
-      condition: event.title is match("CPU saturation")
+    - name: Web site is DOWN
+      condition: event.payload.ProblemTitle == "url_checker"
       action:
         run_job_template:
-          name: "Remediate CPU saturation issue"
-          organization: "Default"
+          name: "EDA / URL Checker / DOWN"
+          organization: Default
+          job_args:
+            extra_vars:
+              _hosts: "{{ event.payload.host_host }}"
 
     - name: Catch all remaining
-      condition: event.meta is defined
+      condition: event.payload is defined
       action:
         debug:
