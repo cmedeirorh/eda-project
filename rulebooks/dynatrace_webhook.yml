@@ -9,12 +9,15 @@
 
   rules:
     - name: Web site is DOWN
-      condition: event.payload.State == "OPEN"
+      condition: event.payload.ProblemTitle == "Http monitor outage"
       action:
         run_job_template:
           name: "WINDOWS / Deploy IIS + PHP"
           organization: Default
-
+          job_args:
+            extra_vars:
+              _hosts: "{{ event.payload.EntityName }}"
+              
     - name: Catch all remaining
       condition: event.payload is defined
       action:
