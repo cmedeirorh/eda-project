@@ -9,14 +9,14 @@
 
   rules:
     - name: Web site is DOWN
-      condition: event.payload.ProblemTitle == "url_checker"
+      condition: event.payload.ProblemID == "999"
       action:
         run_job_template:
-          name: "EDA / URL Checker / DOWN"
+          name: "Demo Job Template"
           organization: Default
           job_args:
             extra_vars:
-              _hosts: "{{ event.payload.host_host }}"
+              _hosts: "{{ event.payload.State }}"
 
     - name: Catch all remaining
       condition: event.payload is defined
