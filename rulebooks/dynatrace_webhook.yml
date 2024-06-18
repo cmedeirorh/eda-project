@@ -9,7 +9,7 @@
 
   rules:
     - name: Web site is DOWN
-      condition: event.payload.ProblemID == "999"
+      condition: event.payload.State == "OPEN"
       action:
         run_job_template:
           name: "Demo Job Template"
@@ -22,3 +22,4 @@
       condition: event.payload is defined
       action:
         debug:
+          var: event.payload.State
