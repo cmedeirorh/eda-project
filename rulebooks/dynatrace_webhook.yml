@@ -12,11 +12,8 @@
       condition: event.payload.State == "OPEN"
       action:
         run_job_template:
-          name: "Demo Job Template"
+          name: "WINDOWS / Deploy IIS + PHP"
           organization: Default
-          job_args:
-            extra_vars:
-              _hosts: "{{ event.payload.State }}"
 
     - name: Catch all remaining
       condition: event.payload is defined
