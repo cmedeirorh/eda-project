@@ -4,11 +4,11 @@
   sources:
     - ansible.eda.webhook:
         host: 0.0.0.0
-        port: 35002
+        port: 35001
 
   rules:
     - name: Web site is DOWN
-      condition: event.payload.trigger_name == 'Security Alert: selinux-config has been changed'
+      condition: event.payload.trigger_name == "Security Alert - selinux-config has been changed"
       action:
         run_job_template:
           name: "RHEL Workshop - Install Zabbix Agent"
