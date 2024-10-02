@@ -8,10 +8,10 @@
 
   rules:
     - name: EC2 VM is Unresponsive
-      condition: event.payload.trigger_name == "ICMP Unavailable by ping"
+      condition: event.payload.trigger_name == "Security Alert: selinux-config has been changed"
       action:
         run_job_template:
-          name: "Cloud / AWS / Restart VM"
+          name: "RHEL Workshop - Install Zabbix Agent"
           organization: Default
           job_args:
             extra_vars:
