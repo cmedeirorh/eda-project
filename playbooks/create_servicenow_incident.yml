@@ -1,0 +1,23 @@
+---
+- name: Create ServiceNow Incident
+  hosts: '{{ event.payload.host_host }}'
+  become: true
+
+  tasks:      
+  - name: Create a ServiceNow Incident
+    servicenow.itsm.incident:
+      instance:
+          host: "{{ sn_instance }}"
+          username: "{{ sn_username }}"
+          password: "{{ sn_password }}"
+      state: new
+      caller: "ansible"
+      urgency: high
+      impact: high
+      short_description: 'Website "{{ inventory_hostname }}" is DOWN!'
+    register: new_ticket
+
+  - name: ServiceNow Change Request Number
+    ansible.builtin.debug:
+      var: new_ticket.record.number
+    when: new_ticket is defined
